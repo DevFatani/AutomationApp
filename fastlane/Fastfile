@@ -30,6 +30,7 @@ platform :android do
   end
 
   lane :shit do
+        gradle(task: 'assemble', build_type: 'AndroidTest')
         capture_android_screenshots(
           locales: ["en-US"],
           app_package_name: "com.devfatani.automationapp",
