@@ -4,10 +4,9 @@ android {
     signingConfigs {
         release {
             storeFile file('../app_key.jks')
-            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
-//            keyAlias = 'myKey'
-            keyAlias = System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
+            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
             keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
         }
     }
     lintOptions {
