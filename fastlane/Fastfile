@@ -1,0 +1,43 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  lane :screenshots do
+    capture_android_screenshots
+  end
+
+  lane :beta do
+    gradle(task: 'assemble', build_type: 'Release')
+    upload_to_play_store(track: 'beta')
+   end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
+
+  lane :build_for_screengrab do
+      build_android_app(task: 'assemble', build_type: 'Debug')
+      build_android_app(task: 'assemble', build_type: 'AndroidTest')
+  end
+
+  lane :shit do
+        capture_android_screenshots(
+          locales: ["en-US"],
+          app_package_name: "com.devfatani.automationapp",
+          clear_previous_screenshots: true,
+          test_instrumentation_runner: "androidx.test.runner.AndroidJUnitRunner",
+          app_apk_path: "app/build/outputs/apk/debug/app-debug.apk",
+          tests_apk_path: "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+        )
+  end
+
+end

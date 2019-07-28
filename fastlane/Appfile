@@ -1,0 +1,2 @@
+package_name ("sa.salla.sallacustomerapp.aster")
+json_key_file ("google_api_salla.json")
